@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const Note = require("./models/noteModel");
 
+const version = '1.0.0';
 const app = express();
 app.use(cors({}));
 app.use(express.json());
@@ -10,6 +11,18 @@ app.use(express.json());
 const mongoURL = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_IP}:${process.env.MONGO_PORT}/?authSource=admin`;
 
 // const mongoURL = `mongodb://localhost:27017/?authSource=admin`;
+
+app.get('/', (req, res) => {
+  // set response content    
+      res.send(`<html>
+                  <body>
+                      <h1 style="color:blue;text-align: center;margin-top: 100px;"> [Version ${version}]: This is AMAZING!!! Like & Subscribe!</h1>
+                      <div style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%)">
+                          <img src="https://picsum.photos/400/400?random=1">
+                      </div>
+                  </body>
+                 </html>`)
+});
 
 app.get("/notes", async (req, res) => {
   try {
